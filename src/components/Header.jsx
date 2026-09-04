@@ -26,6 +26,29 @@ export default function Header() {
   }, [location.pathname])
 
   useEffect(() => {
+    const header = headerRef.current
+    if (!header) return
+
+    function syncHeight() {
+      document.documentElement.style.setProperty('--header-h', `${header.offsetHeight}px`)
+    }
+
+    syncHeight()
+    const observer = new ResizeObserver(syncHeight)
+    observer.observe(header)
+    window.addEventListener('resize', syncHeight)
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', syncHeight)
+    }
+  }, [menuOpen])
+
+  useEffect(() => {
+    document.body.classList.toggle('nav-open', menuOpen)
+    return () => document.body.classList.remove('nav-open')
+  }, [menuOpen])
+
+  useEffect(() => {
     function onPointerDown(event) {
       if (dropRef.current && !dropRef.current.contains(event.target)) {
         setDropOpen(false)
@@ -78,6 +101,7 @@ export default function Header() {
         <button
           className="menu-btn"
           type="button"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((v) => !v)}
         >
