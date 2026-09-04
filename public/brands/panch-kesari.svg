@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="72" viewBox="0 0 240 72">
+  <rect width="240" height="72" rx="8" fill="#fff"/>
+  <circle cx="36" cy="24" r="4.5" fill="#C0392B"/>
+  <circle cx="24" cy="36" r="4.5" fill="#C0392B"/>
+  <circle cx="48" cy="36" r="4.5" fill="#C0392B"/>
+  <circle cx="28" cy="50" r="4.5" fill="#C0392B"/>
+  <circle cx="44" cy="50" r="4.5" fill="#C0392B"/>
+  <text x="64" y="34" font-family="Georgia, serif" font-size="18" fill="#6B1E1E">PANCH KESARI</text>
+  <text x="64" y="52" font-family="Arial, sans-serif" font-size="9" letter-spacing="2" fill="#9A7B4F">HERITAGE JEWELLERY</text>
+</svg>

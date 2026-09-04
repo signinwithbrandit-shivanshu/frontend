@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="72" viewBox="0 0 260 72">
+  <rect width="260" height="72" rx="8" fill="#fff"/>
+  <path d="M36 16 C44 22 48 28 48 36 C48 48 36 54 36 54 C36 54 24 48 24 36 C24 28 28 22 36 16 Z" fill="none" stroke="#8E6B23" stroke-width="2"/>
+  <circle cx="36" cy="34" r="4" fill="#8E6B23"/>
+  <text x="64" y="34" font-family="Georgia, serif" font-size="18" fill="#3D2B1F">BADERA</text>
+  <text x="64" y="52" font-family="Arial, sans-serif" font-size="10" letter-spacing="2.2" fill="#8E6B23">JEWELLERS</text>
+</svg>

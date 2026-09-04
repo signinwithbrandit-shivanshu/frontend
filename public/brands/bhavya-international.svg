@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="72" viewBox="0 0 280 72">
+  <rect width="280" height="72" rx="8" fill="#fff"/>
+  <circle cx="36" cy="36" r="18" fill="none" stroke="#1A5276" stroke-width="2"/>
+  <path d="M24 36 H48 M36 22 V50 M26 26 L46 46 M46 26 L26 46" stroke="#1A5276" stroke-width="1.2"/>
+  <text x="64" y="34" font-family="Georgia, serif" font-size="18" fill="#1A5276">BHAVYA</text>
+  <text x="64" y="52" font-family="Arial, sans-serif" font-size="10" letter-spacing="2.4" fill="#7B8A99">INTERNATIONAL</text>
+</svg>
