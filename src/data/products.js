@@ -27,10 +27,11 @@ export const products = [
     id: 'BRD-BAG-001',
     categoryId: CATEGORY_IDS.BAGS,
     name: 'Felt Bags',
-    price: 499,
+    price: 420,
+    maxPrice: 600,
     description: 'Felt tote and giveaway bags with a large print or embroidery panel.',
     image:
-      'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=80',
+      '/bottles/bottle1.png',
     active: true,
   },
   {
@@ -307,6 +308,16 @@ export const products = [
     id: 'BRD-OTH-003',
     categoryId: CATEGORY_IDS.OTHER,
     name: 'Umbrella',
+    price: 690,
+    description: 'Golf and compact umbrellas with panel print and sleeve.',
+    image:
+      'https://images.unsplash.com/photo-1533419734162-0ab68a2d3278?auto=format&fit=crop&w=900&q=80',
+    active: true,
+  },
+  {
+    id: 'BRD-OTH-004',
+    categoryId: CATEGORY_IDS.OTHER,
+    name: 'Umbrella 01',
     price: 690,
     description: 'Golf and compact umbrellas with panel print and sleeve.',
     image:

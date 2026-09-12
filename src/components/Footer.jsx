@@ -1,3 +1,4 @@
+import { CiInstagram, CiLocationArrow1, CiLocationOn, CiMail } from 'react-icons/ci'
 import { company } from '../data/company.js'
 
 export default function Footer() {
@@ -16,14 +17,26 @@ export default function Footer() {
           ))}
         </div>
         <div className="footer-meta">
-          <a href={`mailto:${company.email}`}>{company.email}</a>
-          <a href={company.website} target="_blank" rel="noreferrer">
-            {company.websiteLabel}
-          </a>
-          <a href={company.instagram} target="_blank" rel="noreferrer">
-            {company.instagramLabel}
-          </a>
-          <p>{company.address}</p>
+          <span style={{display: "flex", alignItems: "center", gap: "4px", color: "var(--muted)" }}>
+            <CiMail />
+            <a href={`mailto:${company.email}`}>{company.email}</a>
+          </span>
+          <span style={{display: "flex", alignItems: "center", gap: "4px", color: "var(--muted)" }}>
+            <span style={{fontSize: "12px"}}>GST: </span>
+            <a href="#" target="_blank" rel="noreferrer">
+              {company.gst}
+            </a>
+          </span>
+          <span style={{display: "flex", alignItems: "center", gap: "4px", color: "var(--muted)" }}>
+            <CiInstagram />
+            <a href={company.instagram} rel="noreferrer">
+              {company.instagramLabel}
+            </a>
+          </span>
+          <span style={{display: "flex", alignItems: "center", gap: "4px", color: "var(--muted)" }}>
+            <CiLocationOn />
+            <p>{company.address}</p>
+          </span>
         </div>
       </div>
     </footer>

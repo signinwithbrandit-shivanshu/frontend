@@ -9,7 +9,10 @@ export default function ProductCard({ product }) {
         <div className="sku num">{product.id}</div>
         <h3>{product.name}</h3>
         <p>{product.description}</p>
+        <div>
+        <p>Starting from: </p>
         <div className="price num">{formatPrice(product.price)}</div>
+        </div>
         <Link className="btn btn-ghost" to={`/contact?product=${encodeURIComponent(product.id)}`}>
           Enquire
         </Link>
