@@ -555,7 +555,7 @@ button {
 .cat-card {
   position: relative;
   grid-column: span 2;
-  min-height: 300px;
+  min-height: 320px;
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -565,6 +565,7 @@ button {
 
 .cat-card.featured {
   grid-column: span 4;
+  min-height: 360px;
 }
 
 .cat-card-product .cat-stage {
@@ -572,7 +573,7 @@ button {
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(ellipse 70% 55% at 50% 38%, #fff 0%, #ebe6dc 55%, #d8d0c4 100%);
+    radial-gradient(ellipse 78% 62% at 50% 40%, #ffffff 0%, #f3efe8 48%, #e4ddd2 100%);
 }
 
 .cat-card img.main {
@@ -587,9 +588,15 @@ button {
 
 .cat-card-product img.main {
   object-fit: contain;
-  object-position: center 42%;
-  padding: 28px 28px 72px;
-  filter: drop-shadow(0 18px 28px rgba(20, 16, 10, 0.18));
+  object-position: center center;
+  width: 100%;
+  height: calc(100% - 58px);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto;
+  padding: 22px 22px 8px;
+  filter: drop-shadow(0 16px 26px rgba(20, 16, 10, 0.16));
 }
 
 .cat-card:hover img.main {
@@ -598,7 +605,7 @@ button {
 }
 
 .cat-card-product:hover img.main {
-  transform: scale(1.04);
+  transform: scale(1.03);
   opacity: 1;
 }
 
@@ -613,27 +620,31 @@ button {
 .cat-card-product .overlay {
   background: linear-gradient(
     180deg,
-    transparent 42%,
-    rgba(10, 14, 26, 0.55) 68%,
-    rgba(10, 14, 26, 0.94) 100%
+    transparent 0%,
+    transparent 62%,
+    rgba(10, 14, 26, 0.35) 78%,
+    rgba(10, 14, 26, 0.96) 100%
   );
 }
 
 .cat-card .copy {
   position: absolute;
-  left: 22px;
-  right: 22px;
-  bottom: 22px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 2;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
+  min-height: 58px;
+  padding: 14px 20px;
+  background: linear-gradient(180deg, transparent, rgba(8, 11, 20, 0.98));
 }
 
 .cat-card h3 {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.28rem;
   line-height: 1.15;
 }
 
@@ -1569,21 +1580,25 @@ button {
     left: max(12px, env(safe-area-inset-left));
     right: max(12px, env(safe-area-inset-right));
     top: calc(var(--header-h) + 6px);
-    bottom: max(12px, env(safe-area-inset-bottom));
+    bottom: auto;
     z-index: 50;
+    width: auto;
+    height: auto;
+    max-height: calc(100dvh - var(--header-h) - 18px - env(safe-area-inset-bottom, 0px));
     background: var(--navy-2);
     border: 1px solid var(--line);
     border-radius: 16px;
-    padding: 10px;
+    padding: 8px;
     flex-direction: column;
     align-items: stretch;
-    max-height: none;
+    justify-content: flex-start;
+    gap: 2px;
     overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
-    scrollbar-gutter: stable;
+    box-shadow: var(--shadow);
   }
 
   .nav.open {
@@ -1656,11 +1671,16 @@ button {
   .cat-card,
   .cat-card.featured {
     grid-column: auto;
-    min-height: 260px;
+    min-height: 280px;
+  }
+
+  .cat-card.featured {
+    min-height: 300px;
   }
 
   .cat-card-product img.main {
-    padding: 20px 18px 64px;
+    height: calc(100% - 54px);
+    padding: 16px 16px 6px;
   }
 
   .footer-grid {
@@ -1748,21 +1768,28 @@ button {
 
   .cat-card,
   .cat-card.featured {
-    min-height: 250px;
+    min-height: 270px;
+  }
+
+  .cat-card.featured {
+    min-height: 300px;
   }
 
   .cat-card .copy {
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 12px 16px;
+    min-height: 52px;
   }
 
   .cat-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 
   .cat-card-product img.main {
-    padding: 24px 28px 70px;
+    height: calc(100% - 52px);
+    padding: 18px 20px 4px;
   }
 
   .hover-strip {
@@ -1928,11 +1955,16 @@ button {
 
   .cat-card,
   .cat-card.featured {
-    min-height: 220px;
+    min-height: 240px;
+  }
+
+  .cat-card.featured {
+    min-height: 270px;
   }
 
   .cat-card-product img.main {
-    padding: 18px 20px 60px;
+    height: calc(100% - 50px);
+    padding: 14px 16px 4px;
   }
 }
 
