@@ -1,13 +1,16 @@
 /**
- * Enquiry delivery (Web3Forms, free).
+ * Enquiry delivery.
  *
- * Setup (once)
- * 1. Open https://web3forms.com
- * 2. Create an Access Key for signinwithbrandit@gmail.com
- * 3. Paste the key below (or set VITE_WEB3FORMS_ACCESS_KEY in `.env`)
+ * Preferred: Web3Forms (https://web3forms.com)
+ * 1. Create an Access Key for signinwithbrandit@gmail.com
+ * 2. Put it in `.env` as VITE_WEB3FORMS_ACCESS_KEY=...
+ *    or paste it as the fallback string below.
  *
- * Phone-only enquiries are allowed. Each send uses a unique subject so Gmail
- * does not stack them as one conversation.
+ * Access keys are safe to expose in frontend code (they only alias your inbox).
+ *
+ * If no key is set, enquiries fall back to FormSubmit for company.email.
+ * FormSubmit may ask you to activate the inbox once via a confirmation email.
  */
 export const WEB3FORMS_ACCESS_KEY =
-  import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || ''
+  String(import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '').trim() ||
+  ''

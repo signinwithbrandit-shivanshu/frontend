@@ -129,12 +129,15 @@ export default function EnquiryForm() {
       setContactHint('')
       setFileError('')
     } catch (err) {
-      if (err.message === 'missing-key') {
-        setError('Enquiry delivery is not set up yet. Add a Web3Forms access key (see src/data/enquiry.js).')
+      const detail = err?.message && !['missing-key', 'network', 'send-failed', 'missing-inbox'].includes(err.message)
+        ? ` (${err.message})`
+        : ''
+      if (err.message === 'missing-key' || err.message === 'missing-inbox') {
+        setError('Enquiry delivery is not configured yet. Please email us directly or try again later.')
       } else if (err.message === 'network') {
         setError(`Could not reach the enquiry service. Email us at ${company.email} or try again.`)
       } else {
-        setError(`Could not send just now. Email us at ${company.email} or try again.`)
+        setError(`Could not send just now${detail}. Email us at ${company.email} or try again.`)
       }
     } finally {
       setSending(false)
