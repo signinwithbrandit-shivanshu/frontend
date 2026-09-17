@@ -555,15 +555,24 @@ button {
 .cat-card {
   position: relative;
   grid-column: span 2;
-  min-height: 280px;
+  min-height: 300px;
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid var(--line);
   background: var(--navy-2);
+  isolation: isolate;
 }
 
 .cat-card.featured {
   grid-column: span 4;
+}
+
+.cat-card-product .cat-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 38%, #fff 0%, #ebe6dc 55%, #d8d0c4 100%);
 }
 
 .cat-card img.main {
@@ -572,7 +581,15 @@ button {
   object-fit: cover;
   position: absolute;
   inset: 0;
+  z-index: 0;
   transition: transform 0.6s ease, opacity 0.4s;
+}
+
+.cat-card-product img.main {
+  object-fit: contain;
+  object-position: center 42%;
+  padding: 28px 28px 72px;
+  filter: drop-shadow(0 18px 28px rgba(20, 16, 10, 0.18));
 }
 
 .cat-card:hover img.main {
@@ -580,11 +597,26 @@ button {
   opacity: 0.35;
 }
 
+.cat-card-product:hover img.main {
+  transform: scale(1.04);
+  opacity: 1;
+}
+
 .cat-card .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 20%, rgba(10, 14, 26, 0.9));
+  background: linear-gradient(180deg, transparent 35%, rgba(10, 14, 26, 0.92) 100%);
   z-index: 1;
+  pointer-events: none;
+}
+
+.cat-card-product .overlay {
+  background: linear-gradient(
+    180deg,
+    transparent 42%,
+    rgba(10, 14, 26, 0.55) 68%,
+    rgba(10, 14, 26, 0.94) 100%
+  );
 }
 
 .cat-card .copy {
@@ -593,11 +625,25 @@ button {
   right: 22px;
   bottom: 22px;
   z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .cat-card h3 {
-  margin: 0 0 4px;
+  margin: 0;
   font-size: 1.35rem;
+  line-height: 1.15;
+}
+
+.cat-cta {
+  flex-shrink: 0;
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .cat-card p {
@@ -630,6 +676,7 @@ button {
   border-radius: 10px;
   border: 1px solid rgba(244, 180, 26, 0.5);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  background: #fff;
 }
 
 /* Brands */
@@ -1247,26 +1294,16 @@ button {
   margin: 8px 0 0;
   max-width: 22em;
   font-family: var(--serif);
-  font-size: clamp(1.6rem, 3vw, 2.15rem);
+  font-size: clamp(1.45rem, 3vw, 2rem);
   font-weight: 500;
   font-style: italic;
-  line-height: 1.2;
+  line-height: 1.25;
   color: var(--gold);
 }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 28px;
-  align-items: center;
-}
-
-.about-grid img {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  border-radius: 20px;
-  border: 1px solid var(--line);
+.about-copy-solo {
+  max-width: 40rem;
+  margin-bottom: 8px;
 }
 
 .about-copy p,
@@ -1278,6 +1315,7 @@ button {
 
 .about-copy p {
   margin: 0 0 16px;
+  font-size: 1.05rem;
 }
 
 .about-copy p:last-child {
@@ -1291,7 +1329,7 @@ button {
 }
 
 .about-offer {
-  margin-top: 72px;
+  margin-top: 48px;
 }
 
 .about-offer .section-head p {
@@ -1300,21 +1338,25 @@ button {
 
 .about-lines {
   display: grid;
-  gap: 18px;
+  gap: 12px;
 }
 
 .about-line {
   max-width: none;
-  padding: 28px 32px;
+  padding: 22px 24px;
   background: var(--navy-2);
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
 
+.about-line-compact {
+  padding: 18px 20px;
+}
+
 .about-line h3 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   font-family: var(--serif);
-  font-size: 1.85rem;
+  font-size: clamp(1.35rem, 3vw, 1.7rem);
   font-weight: 500;
 }
 
@@ -1323,8 +1365,10 @@ button {
 }
 
 .about-line-lead {
-  margin: 0 0 12px;
-  color: var(--ink) !important;
+  margin: 0;
+  color: var(--muted) !important;
+  line-height: 1.55 !important;
+  font-size: 0.98rem;
 }
 
 .about-range {
@@ -1502,16 +1546,21 @@ button {
   .header-inner {
     grid-template-columns: 1fr auto;
     gap: 12px;
+    padding: 6px 0;
   }
 
   .logo img {
-    height: 36px;
-    max-width: min(200px, 58vw);
+    height: 34px;
+    max-width: min(180px, 52vw);
   }
 
   .menu-btn {
     display: inline-flex;
     justify-self: end;
+  }
+
+  .search-bar {
+    padding: 6px 0 8px;
   }
 
   .nav {
@@ -1579,7 +1628,7 @@ button {
   }
 
   .hero-copy {
-    padding: 56px 0 40px;
+    padding: 48px 0 36px;
   }
 
   .hero-pattern::after {
@@ -1592,40 +1641,49 @@ button {
 
   .hero-rail-inner b,
   .hero-rail-inner .num {
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-size: clamp(1.45rem, 4vw, 2rem);
   }
 
   .section {
-    padding: 64px 0;
+    padding: 56px 0;
   }
 
   .cat-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 12px;
   }
 
   .cat-card,
   .cat-card.featured {
     grid-column: auto;
-    min-height: 240px;
+    min-height: 260px;
+  }
+
+  .cat-card-product img.main {
+    padding: 20px 18px 64px;
   }
 
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .about-grid img {
-    height: min(360px, 48vw);
-  }
 }
 
 @media (max-width: 720px) {
+  .wrap {
+    width: min(1180px, calc(100% - 28px));
+  }
+
+  .search-bar input {
+    font-size: 0.95rem;
+  }
+
   .hero-copy {
-    padding: 36px 0 28px;
+    padding: 28px 0 22px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.15rem, 11vw, 3.4rem);
+    margin-bottom: 14px;
   }
 
   .hero h1 em {
@@ -1634,37 +1692,52 @@ button {
 
   .hero-lead,
   .lead {
-    font-size: 1rem;
-    margin-bottom: 22px;
+    font-size: 0.98rem;
+    margin-bottom: 18px;
+    line-height: 1.6;
   }
 
   .cta-row {
     width: 100%;
+    gap: 10px;
   }
 
   .cta-row .btn {
-    flex: 1 1 calc(50% - 12px);
-    min-width: 140px;
+    flex: 1 1 calc(50% - 10px);
+    min-width: 0;
+    padding: 12px 16px;
   }
 
   .hero-rail-inner {
     gap: 8px;
-    padding: 16px 0;
+    padding: 14px 0;
   }
 
   .hero-rail-inner div {
-    padding-left: 12px;
+    padding-left: 10px;
+  }
+
+  .hero-rail-inner span {
+    font-size: 0.7rem;
   }
 
   .section {
-    padding: 48px 0;
+    padding: 40px 0;
   }
 
   .section-head {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
-  .cat-grid,
+  .section-head h2 {
+    font-size: clamp(1.65rem, 6vw, 2.2rem);
+  }
+
+  .cat-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
   .process,
   .enquiry-panel,
   .footer-grid,
@@ -1675,7 +1748,25 @@ button {
 
   .cat-card,
   .cat-card.featured {
-    min-height: 220px;
+    min-height: 250px;
+  }
+
+  .cat-card .copy {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .cat-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .cat-card-product img.main {
+    padding: 24px 28px 70px;
+  }
+
+  .hover-strip {
+    display: none;
   }
 
   .mega {
@@ -1683,61 +1774,138 @@ button {
   }
 
   .brand-logo {
-    min-width: 160px;
-    height: 72px;
+    min-width: 148px;
+    height: 68px;
     padding: 8px 12px;
   }
 
   .brand-logo img {
-    max-height: 52px;
-    max-width: 160px;
+    max-height: 48px;
+    max-width: 148px;
+  }
+
+  .enquiry-wrap {
+    width: min(720px, calc(100% - 28px));
   }
 
   .enquiry-panel.compact,
   .enquiry-panel {
-    padding: 18px 16px 20px;
-    border-radius: 16px;
+    padding: 16px 14px 18px;
+    border-radius: 14px;
   }
 
   .about-offer {
-    margin-top: 48px;
+    margin-top: 36px;
   }
 
-  .about-line {
-    padding: 20px 18px;
+  .about-line,
+  .about-line-compact {
+    padding: 16px 16px;
   }
 
   .page-hero {
-    padding: 28px 0 16px;
+    padding: 20px 0 12px;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+  }
+
+  .about-kicker {
+    font-size: clamp(1.25rem, 5vw, 1.6rem);
   }
 
   .custom-drop {
-    padding: 16px;
-    margin-bottom: 22px;
+    padding: 14px 14px;
+    margin-bottom: 18px;
+  }
+
+  .custom-drop strong {
+    font-size: 0.9rem;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr));
+    gap: 12px;
   }
 
   .product-media,
   .product-card img {
-    height: 200px;
+    height: 168px;
+  }
+
+  .product-card .body {
+    padding: 12px 12px 14px;
+    gap: 6px;
+  }
+
+  .product-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .product-card p {
+    font-size: 0.82rem;
+  }
+
+  .product-card .btn {
+    padding: 10px 14px;
+    font-size: 0.74rem;
+  }
+
+  .family-section {
+    margin-top: 28px;
+  }
+
+  .family-section-title {
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+  }
+
+  .lightbox {
+    padding: 12px;
   }
 
   .lightbox img {
-    max-height: min(82vh, 82dvh);
+    max-height: min(78vh, 78dvh);
   }
 
   .hover-strip img {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .footer {
+    padding: 28px 0 max(28px, env(safe-area-inset-bottom));
+  }
+
+  .vcard {
+    margin-top: 20px;
+    padding: 18px 16px 14px;
+  }
+
+  .vcard::before {
+    display: none;
+  }
+
+  .vcard-list li {
+    grid-template-columns: 28px 1fr;
+    gap: 10px;
   }
 }
 
 @media (max-width: 480px) {
+  .wrap {
+    width: calc(100% - 20px);
+  }
+
   .search-bar form {
-    padding: 4px 4px 4px 12px;
+    padding: 3px 3px 3px 12px;
+    gap: 6px;
   }
 
   .search-bar button {
     padding: 10px 12px;
+    font-size: 0.72rem;
   }
 
   .hero-rail-inner {
@@ -1748,8 +1916,23 @@ button {
     flex: 1 1 100%;
   }
 
-  .about-grid img {
-    height: 220px;
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .product-media,
+  .product-card img {
+    height: 140px;
+  }
+
+  .cat-card,
+  .cat-card.featured {
+    min-height: 220px;
+  }
+
+  .cat-card-product img.main {
+    padding: 18px 20px 60px;
   }
 }
 
@@ -1759,14 +1942,15 @@ button {
     transform: none;
   }
 
-  .cat-card:hover img.main {
+  .cat-card:hover img.main,
+  .cat-card-product:hover img.main {
     transform: none;
     opacity: 1;
   }
 
   .product-media:hover img,
   .product-media:focus-visible img {
-    transform: scale(1.08);
+    transform: scale(1.06);
   }
 }
 
@@ -1776,12 +1960,14 @@ button {
   }
 
   .product-media img,
-  .custom-drop {
+  .custom-drop,
+  .cat-card img.main {
     transition: none;
   }
 
   .product-media:hover img,
-  .product-media:focus-visible img {
+  .product-media:focus-visible img,
+  .cat-card:hover img.main {
     transform: none;
   }
 }

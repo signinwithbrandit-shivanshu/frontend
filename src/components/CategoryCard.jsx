@@ -7,8 +7,9 @@ export default function CategoryCard({ category }) {
   return (
     <Link
       to={`/collection/${category.slug}`}
-      className={`cat-card ${category.featured ? 'featured' : ''}`}
+      className={`cat-card cat-card-product ${category.featured ? 'featured' : ''}`}
     >
+      <div className="cat-stage" aria-hidden="true" />
       <img
         className="main"
         src={category.image}
@@ -34,6 +35,7 @@ export default function CategoryCard({ category }) {
       ) : null}
       <div className="copy">
         <h3>{category.title}</h3>
+        <span className="cat-cta">Browse</span>
       </div>
     </Link>
   )
