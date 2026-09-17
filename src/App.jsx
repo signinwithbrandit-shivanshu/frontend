@@ -13,6 +13,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/collection" element={<Collection />} />
+        <Route path="/collection/:slug/:group" element={<CollectionCategory />} />
         <Route path="/collection/:slug" element={<CollectionCategory />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

@@ -11,6 +11,46 @@ const bagRange = [
   'And more',
 ]
 
+const offerLines = [
+  {
+    to: '/collection/bags',
+    title: 'Customizable Bags',
+    lead: 'Give your brand a presence that travels.',
+    intro: 'We offer a wide range of customizable bags, including:',
+    items: bagRange,
+  },
+  {
+    to: '/collection/stationery',
+    title: 'Customizable Stationery',
+    lead: 'Make your brand part of your customers’ and employees’ everyday routines.',
+    intro: 'Our stationery range includes:',
+    items: ['Customized Pens', 'Diaries', 'File Covers', 'Notepads', 'And more'],
+  },
+  {
+    to: '/collection/desktop-accessories',
+    title: 'Desktop & Office Essentials',
+    lead: 'Products that keep your brand visible right where work happens.',
+    intro: 'Our range includes:',
+    items: [
+      'Mugs',
+      'Card Holders',
+      'Mobile Stands',
+      'Pen Stands',
+      'Laptop Stands',
+      'Table Calendars',
+      'Table Lamps',
+      'And more',
+    ],
+  },
+  {
+    to: '/collection/other',
+    title: 'Promotional & Lifestyle Products',
+    lead: 'Small products can create lasting brand impressions.',
+    intro: 'We also offer customizable:',
+    items: ['Umbrellas', 'Keychains', 'Wallets', 'And a variety of other promotional products'],
+  },
+]
+
 export default function About() {
   return (
     <section className="section" style={{ paddingTop: 28 }}>
@@ -39,8 +79,11 @@ export default function About() {
             </p>
           </div>
           <img
-            src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=1200&q=80"
-            alt="Branded corporate gifts packed for delivery"
+            src="/OTH/BRD-OTH-012.jpg"
+            alt="Brandit corporate gift set with notebook, bottle and branded essentials"
+            onError={(event) => {
+              event.currentTarget.src = '/bags/BRD-BAG-001.jfif'
+            }}
           />
         </div>
 
@@ -55,18 +98,22 @@ export default function About() {
             </p>
           </div>
 
-          <article className="about-line">
-            <h3>
-              <Link to="/collection/bags">Customizable Bags</Link>
-            </h3>
-            <p className="about-line-lead">Give your brand a presence that travels.</p>
-            <p>We offer a wide range of customizable bags, including:</p>
-            <ul className="about-range">
-              {bagRange.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
+          <div className="about-lines">
+            {offerLines.map((line) => (
+              <article className="about-line" key={line.title}>
+                <h3>
+                  <Link to={line.to}>{line.title}</Link>
+                </h3>
+                <p className="about-line-lead">{line.lead}</p>
+                <p>{line.intro}</p>
+                <ul className="about-range">
+                  {line.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

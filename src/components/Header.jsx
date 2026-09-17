@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { categories, productsBySlug } from '../data/catalog.js'
+import { categories, listFamilies } from '../data/catalog.js'
 
 export default function Header() {
   const [query, setQuery] = useState('')
@@ -108,7 +108,7 @@ export default function Header() {
           Menu
         </button>
 
-        <nav className={`nav ${menuOpen ? 'open' : ''}`}>
+        <nav className={`nav ${menuOpen ? 'open' : ''} ${dropOpen ? 'drop-open' : ''}`}>
           <NavLink to="/" className="nav-link" end onClick={closeMenus}>
             Home
           </NavLink>
@@ -136,13 +136,13 @@ export default function Header() {
                   >
                     {category.name}
                   </NavLink>
-                  {productsBySlug(category.slug).map((item) => (
+                  {listFamilies({ slug: category.slug }).map((family) => (
                     <NavLink
-                      key={item.id}
-                      to={`/collection/${category.slug}`}
+                      key={family.id}
+                      to={`/collection/${category.slug}/${family.id}`}
                       onClick={closeMenus}
                     >
-                      {item.name}
+                      {family.name}
                     </NavLink>
                   ))}
                 </div>

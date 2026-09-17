@@ -55,6 +55,13 @@ export function productsBySlug(slug) {
   return listProducts({ categoryId: category.id })
 }
 
+export {
+  familyForProduct,
+  getFamily,
+  listFamilies,
+  productsInFamily,
+} from './families.js'
+
 export function categoryLabel(slug) {
   return getCategory(slug)?.name ?? slug
 }
